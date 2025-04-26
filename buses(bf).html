@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: skyblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: gray;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 350px;
+        }
+        .container h2 {
+            text-align: center;
+            color: blue;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+            window.location.href = 'bus seat selecting-BUS.html';
+        }
+    </script>
+    <div class="container">
+        <h2>Bus Ticket Booking</h2>
+        <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+            </div>
+            <div class="form-group">
+                <label for="from">Departure:</label>
+                <input type="text" id="from" name="from" required>
+            </div>
+            <div class="form-group">
+                <label for="to">Destination:</label>
+                <input type="text" id="to" name="to" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Travel Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="seat">Seat Number:</label>
+                <select id="seat" name="seat" required>
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" onclick="redirectTo('bus seat selecting-BUS.html')">Book Now</button>
+        </form>
+    </div>
+    
+    <script>
+
+    document.getElementById('bookingForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const formData = {
+            name: document.getElementById('name').value,
+            mobile: document.getElementById('mobile').value,
+            from: document.getElementById('from').value,
+            to: document.getElementById('to').value,
+            date: document.getElementById('date').value,
+            seat: document.getElementById('seat').value
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/bus-booking', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+            alert(data.message);
+        } catch (error) {
+            alert('Booking failed! Try again.');
+        }
+    });
+
+    </script>
+
+    
+</body>
+</html>

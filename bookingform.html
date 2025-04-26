@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background : linear-gradient(to right, #ff7e5f, #feb47b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }   
+    .booking-form {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 450px;
+      color: white;
+    }
+    .booking-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .booking-form input, .booking-form select, .booking-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    .booking-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .booking-form button:hover {
+      background-color: #45a049;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <form class="booking-form" action="/book" method="POST">
+    <h2>Book Your Ticket</h2>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="destination">Destination</label>
+    <select id="destination" name="destination" required>
+      <option value="">Select a destination</option>
+      <option value="Arunachalam">Arunachalam</option>
+      <option value="Pondicherry">Pondicherry</option>
+      <option value="Goa">Goa</option>
+      <option value="Munnar">Munnar</option>
+      <option value="Manali">Manali</option>
+    </select>
+
+    <label for="date">Travel Date</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="message">Additional Message</label>
+    <textarea id="message" name="message" rows="4"></textarea>
+
+    <button type="submit">Book Now</button>
+  </form>
+</body>
+</html>
+

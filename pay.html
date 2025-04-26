@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe Payment QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .qr-container {
+            text-align: center;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            width: 400px; /* Increased QR Code size */
+            height: 400px; /* Increased QR Code size */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .payment-info {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="qr-container">
+        <h2>Scan to Pay via PhonePe</h2>
+        <!-- QR Code Image Source -->
+        <img src="pay.jpeg" alt="PhonePe Payment QR Code">
+        <div class="payment-info">
+            <p>Scan the QR code using your PhonePe app to make a payment.</p>
+        </div>
+    </div>
+
+</body>
+</html>

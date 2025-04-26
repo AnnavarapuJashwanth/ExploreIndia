@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff7e5f, #feb47b, #86a8e7, #91eae4);    
+      background-attachment: fixed; 
+      color: #333;
+    }
+
+    /* Login and SignUp Popup Styles */
+    .popup-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Wrapper to hold login box and image beside it */
+    .login-wrapper, .signup-wrapper {
+      display: flex;
+      align-items: center;
+      background: #2d3e50;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    /* Image beside login */
+    .side-image {
+      width: 350px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px 0 0 20px;
+    }
+
+    /* Login and Signup Box */
+    .login-box, .signup-box {
+      background: #2d3e50;
+      padding: 40px;
+      text-align: center;
+      width: 350px;
+      position: relative;
+      border-radius: 0 20px 20px 0;
+    }
+
+    .login-box h2, .signup-box h2 {
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .login-box input, .signup-box input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      font-size: 16px;
+      background-color: #f5f5f5;
+      transition: border-color 0.3s ease;
+    }
+
+    .login-box button, .signup-box button {
+      width: 100%;
+      padding: 15px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-box button:hover, .signup-box button:hover {
+      background-color: #0077cc;
+    }
+
+    /* Social Login Buttons */
+    .social-btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      width: 48%;
+      padding: 12px;
+      background-color: #fff;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background-color: #f1f1f1;
+      transform: scale(1.05);
+    }
+
+    .signup-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #FF5722;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-btn:hover {
+      background-color: #d84315;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .close-btn:hover {
+      color: #e74c3c;
+    }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #ff7e5f, #feb47b, #86a8e7, #91eae4);    
+  background-attachment: fixed; 
+  color: #333;
+}
+div.po
+{
+    border-radius: 50cm;
+      position: relative; 
+      top: 20px;
+      left: 350px;
+}
+
+
+    h1 {
+      background-color: #d2691e;
+      color: white;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 30px;
+      text-align: center;
+      width: 60%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.5em;
+      color: white;
+    }
+
+    div {
+      margin: 10px;
+    }
+    
+
+    div.mycontainerdiv {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    div.munnar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    div.card {
+      padding: 20px;
+      height: 350px;
+      width: 280px;
+      margin: 15px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    div.card:hover {
+      transform: scale(1.05);
+    }
+    .zoom-image {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .zoom-image:hover {
+      transform: scale(1.2);
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top:50px;
+      left:900px;
+      overflow: hidden;
+      background-color: #333;
+      border-radius: 50px;
+      width: fit-content;
+      margin: 10px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul li {
+      float: left;
+    }
+
+    ul li a {
+      display: block;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+
+    ul li a:hover {
+      background-color: #555;
+      border-radius: 20px;
+    }
+
+    .but {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .but:hover {
+      background-color: black;
+      color: white;
+    }
+    .but1
+    {
+        margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .but1:hover
+    {
+    background-color: black;
+    color: white;
+    }
+    footer {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    footer .social-icons {
+      margin: 20px 0;
+    }
+
+    footer .social-icons i {
+      margin: 0 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    footer .social-icons i:hover {
+      transform: scale(1.2);
+    }
+
+    .arunachalam {
+      background-color: #ff6f61;
+    }
+
+    .pondicherry {
+      background-color: #00bcd4;
+    }
+
+    .goa {
+      background-color: #ff9800;
+    }
+
+    .araku {
+      background-color: #8bc34a;
+    }
+
+    .munnar {
+      background-color: #03a9f4;
+    }
+
+    .manali {
+      background-color: #9c27b0;
+    }
+
+    .rameswaram {
+      background-color: #ff5722;
+    }
+
+    .tajmahal {
+      background-color: #607d8b;
+    }
+    .login-top-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+  
+    .login-top-btn button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  
+    .login-top-btn button:hover {
+      background-color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-container" id="loginPopup">
+    <div class="login-wrapper">
+      <!-- Image beside login -->
+      <img src="https://media.licdn.com/dms/image/v2/C5612AQEv5KIhELeDIg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520091885004?e=2147483647&v=beta&t=ws-iB1TLEdN6M6VYbMI8LIkto5jkXblv_A_lyMqKgQk">
+      
+      <div class="login-box">
+        <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="closeLoginPopup()">Login</button>
+
+        <!-- Social Login Buttons -->
+        <div class="social-btns">
+          <button class="social-btn"><i class="fa fa-google"></i> Google</button>
+          <button class="social-btn"><i class="fa fa-envelope"></i> Mail</button>
+        </div>
+
+        <div class="social-btns">
+          <button class="social-btn"><i class="fa fa-linkedin"></i> LinkedIn</button>
+        </div>
+
+        <!-- Sign Up Button -->
+        <button class="signup-btn" onclick="openSignupPopup()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Popup -->
+  <div class="popup-container" id="signupPopup" style="display: none;">
+    <div class="signup-wrapper">
+      <!-- Image beside signup -->
+      <img src="https://th.bing.com/th/id/OIP.kMF6cVvtWTTLdKKdfkwPSwHaEh?rs=1&pid=ImgDetMain" class="side-image" alt="Signup Image">
+      
+      <div class="signup-box">
+        <span class="close-btn" onclick="closeSignupPopup()">&times;</span>
+        <h2>Sign Up</h2>
+        <input type="text" id="signupUsername" placeholder="Enter Username">
+        <input type="email" id="signupEmail" placeholder="Enter Email">
+        <input type="password" id="signupPassword" placeholder="Create Password">
+        <button onclick="closeSignupPopup()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function closeLoginPopup() {
+      document.getElementById("loginPopup").style.display = "none";
+    }
+
+    function openSignupPopup() {
+      document.getElementById("signupPopup").style.display = "flex";
+    }
+
+    function closeSignupPopup() {
+      document.getElementById("signupPopup").style.display = "none";
+    }
+  </script>
+  <div class="po">
+    <img src="logoo.jpg" width="150px" height="120px">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="login-top-btn">
+    <button onclick="openLoginPopup()">Login</button>
+</div>
+
+  <h1>Must Visit Places in India</h1>
+
+  <div class="mycontainerdiv">
+    <div class="card arunachalam">
+      <h2>Arunachalam</h2>
+      <img class="zoom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Arunachalam_temple_from_a_nearby_hill.jpg/800px-Arunachalam_temple_from_a_nearby_hill.jpg" alt="Arunachalam">
+      <p>Arunachalesvara Temple is a Hindu temple dedicated to Shiva.</p>
+      <a href = "Arunachalam.html">
+        <button class="but" > Plan your trip </button>
+      </a>
+    </div>
+
+    <div class="card pondicherry">
+      <h2>Pondicherry</h2>
+      <img class="zoom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Pondicherry-Rock_beach_aerial_view.jpg/1200px-Pondicherry-Rock_beach_aerial_view.jpg" alt="Pondicherry">
+      <p>Pondicherry is the capital of the Union Territory of Puducherry in India.</p>
+      <a href = "pondicherry.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+
+    <div class="card goa">
+      <h2>Goa</h2>
+      <img class="zoom-image" src="https://www.india.com/wp-content/uploads/2024/06/Calangute-Beach-1.jpg" alt="Goa">
+      
+      <p>Known for its beaches, culture, and historical places.</p>
+      <a href = "goa.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+
+    <div class="card araku">
+      <h2>Araku Valley</h2>
+      <img class="zoom-image" src="https://www.india.com/wp-content/uploads/2024/05/Ananthagiri-Hills-1.jpg" alt="Araku">
+      <p>A picturesque hill station in Andhra Pradesh.</p>
+      <a href = "araku.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+  </div>
+
+  <div class="munnar">
+    <div class="card munnar">
+      <h2>Munnar</h2>
+      <img class="zoom-image" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Munnar_hill_station_.JPG" alt="Munnar">
+      <p>A beautiful town in Kerala's Western Ghats mountain range.</p>
+      <a href = "munnar.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+
+    <div class="card manali">
+      <h2>Manali</h2>
+      <img class="zoom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Manali_City.jpg/1200px-Manali_City.jpg" alt="Manali">
+      <p>A resort town in Himachal Pradesh, best visited from October to February.</p>
+      <a href = "manali.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+
+    <div class="card rameswaram">
+      <h2>Rameswaram</h2>
+      <img class="zoom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Pamban_Bridge_Train_Passing.jpg/1200px-Pamban_Bridge_Train_Passing.jpg" alt="Rameswaram">
+      <p>A pilgrimage destination home to the Ramanathaswamy Temple.</p>
+      <a href = "rameswaram.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+
+    <div class="card tajmahal">
+      <h2>Taj Mahal</h2>
+      <img class="zoom-image" src="https://cdn.getyourguide.com/img/location/533591d4b943b.jpeg/99.jpg" alt="Taj Mahal">
+      <p>An ivory-white marble mausoleum on the Yamuna riverbank in Agra.</p>
+      <a href = "taj.html">
+        <button class="but1" > Plan your trip </button>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="social-icons">
+      <i class="fa fa-instagram" style="font-size:48px;"></i>
+      <i class="fa fa-linkedin-square" style="font-size:48px;"></i>
+      <i class="fa fa-twitter" style="font-size:48px;"></i>
+      <i class="fa fa-facebook-square" style="font-size:48px;"></i>
+    </div>
+    <p>&copy; 2025 TRAVELLING PVT. LTD.</p>
+  </footer>
+  <script>
+    function openLoginPopup() {
+      document.getElementById("loginPopup").style.display = "flex";
+    }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".login-box button").addEventListener("click", async () => {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const result = await response.json();
+    alert(result.message);
+  });
+
+  document.querySelector(".signup-box button").addEventListener("click", async () => {
+    const username = document.getElementById("signupUsername").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    const response = await fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password }),
+    });
+
+    const result = await response.json();
+    alert(result.message);
+  });
+});
+
+    </script>
+</body>
+</html>

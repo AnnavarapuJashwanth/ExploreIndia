@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    body {
+        background-color: #f0f8ff;
+        font-family: Arial, sans-serif;
+    }
+    .click, .click1, .click2, .click3 {
+        border-radius: 50cm;
+        position: absolute;
+        top: 30px;
+        border: 4px solid #4CAF50;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .click:hover, .click1:hover, .click2:hover, .click3:hover {
+        transform: scale(1.1);
+        background-color: #ff6666;
+    }
+    .click { left: 900px; background-color: #ff9999; }
+    .click1 { left: 1100px; background-color: #ffcc99; }
+    .click2 { left: 1300px; background-color: #ffff99; }
+    .click3 { left: 1500px; background-color: #99ff99; }
+
+    .container, .cont, .cont1, .cont2 {
+        position: absolute;
+        font-weight: bold;
+        top: 120px;
+        color: #4CAF50;
+        text-shadow: 1px 1px 3px #000;
+    }
+    .container { left: 920px; }
+    .cont { left: 1120px; }
+    .cont1 { left: 1320px; }
+    .cont2 { left: 1525px; }
+
+    .map-container {
+        position: absolute;
+        bottom: 0;
+        left:0;
+        top:630px;
+        width: 40%;
+        height: 300px;
+    }
+
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+    .image-container img {
+        width: 75%;
+        height: auto;
+        transition: opacity 0.5s ease;
+    }
+    .image-container .hover-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .image-container:hover img {
+        opacity: 0;
+    }
+    .image-container:hover .hover-text {
+        opacity: 1;
+    }
+    .guide-sidebar {
+        position: fixed;
+        right: -300px; /* Initially hidden */
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #e6f7ff;
+        border-left: 2px solid #007BFF;
+        padding: 20px;
+        box-shadow: -4px 0 8px rgba(0, 0, 0, 0.3);
+        transition: right 0.4s ease-in-out;
+    }
+
+    .guide-item {
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #007BFF;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .guide-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #007BFF;
+    }
+
+    /* Open Sidebar */
+    .guide-sidebar.open {
+        right: 0;
+    }
+
+    /* Close Button */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+
+    .close-btn:hover {
+        background-color: #cc0000;
+    }
+
+    /* Guide Button */
+    .guide-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .guide-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<a href="fligths(bf).html"> <img class="click" src="flights.jpg" width="100px" height="100px" alt="Flights"></a>
+<div class="container"><p>Flights</p></div>
+
+<a href="buses(bf).html"> <img class="click1" src="buses.jpg" width="100px" height="100px" alt="Buses"></a>
+<div class="cont"><p>Buses</p></div>
+
+<a href="trains(bf).html"> <img class="click2" src="trains.jpg" width="100px" height="100px" alt="Trains"></a>
+<div class="cont1"><p>Trains</p></div>
+
+<a href="cars(bf).html"> <img class="click3" src="cab.jpg" width="100px" height="100px" alt="Cabs"></a>
+<div class="cont2"><p>Cabs</p></div>
+
+<div class="image-container">
+    <img src="https://www.todaystraveller.net/wp-content/uploads/2023/03/pondicherry-1024x682.jpg" alt="Arunachaleswarar Temple">
+    <div class="hover-text">Arunachaleswarar Temple - Sacred Site</div>
+</div>
+
+<div class="map-container">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.524444846413!2d79.07021947480063!3d12.225306987695428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a530b2ed32c749b%3A0x4463edc6355cb9e1!2sArunachaleswarar%20Temple!5e0!3m2!1sen!2sin!4v1700203919394" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+<button class="guide-btn" onclick="toggleGuideSidebar()">Guide Details</button>
+
+<!-- Guide Sidebar -->
+<div class="guide-sidebar" id="guideSidebar">
+    <button class="close-btn" onclick="toggleGuideSidebar()">X</button>
+    
+    <div class="guide-item">
+        <img src="guide1.jpg" alt="Guide 1">
+        <span>V Maruthi<br> 9381459214</span>
+    </div>
+    <div class="guide-item">
+        <img src="guide1.jpg" alt="Guide 2">
+        <span>Best Routes</span>
+    </div>
+    <div class="guide-item">
+        <img src="guide1.jpg" alt="Guide 3">
+        <span>Safety Tips</span>
+    </div>
+    <div class="guide-item">
+        <img src="guide1.jpg" alt="Guide 4">
+        <span>Budget Planning</span>
+    </div>
+</div>
+
+<script>
+    function toggleGuideSidebar() {
+        const sidebar = document.getElementById("guideSidebar");
+        if (sidebar.classList.contains("open")) {
+            sidebar.classList.remove("open");
+        } else {
+            sidebar.classList.add("open");
+        }
+    }
+</script>
+
+</body>
+</html>

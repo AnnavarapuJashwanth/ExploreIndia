@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff7e5f, #feb47b, #86a8e7, #91eae4);    
+      background-attachment: fixed; 
+      color: #333;
+    }
+    
+    
+    .login-popup, .signup-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+   
+    .login-box {
+      background: #2d3e50; 
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 350px;
+      position: relative;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      font-size: 16px;
+      background-color: #f5f5f5;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    .login-box input:focus {
+      border-color: #00aaff;
+      outline: none;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 15px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .login-box button:hover {
+      background-color: #0077cc;
+    }
+
+    /* SignUp Box */
+    .signup-box {
+      background: linear-gradient(to right, #FF5722, #FF7043); /* Linear gradient for SignUp */
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 350px;
+      position: relative;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .signup-box h2 {
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .signup-box input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      font-size: 16px;
+      background-color: #f5f5f5;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    .signup-box input:focus {
+      border-color: #FF7043;
+      outline: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .close-btn:hover {
+      color: #e74c3c;
+    }
+
+    /* Social media buttons styling */
+    .social-btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      width: 48%;
+      padding: 12px;
+      background-color: #fff;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn i {
+      margin-right: 8px;
+    }
+
+    .social-btn:hover {
+      background-color: #f1f1f1;
+      transform: scale(1.05);
+    }
+
+    .signup-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #FF5722;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .signup-btn:hover {
+      background-color: #d84315;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Adding subtle background gradient to input fields */
+    .login-box input, .signup-box input {
+      background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+    }
+
+    /* Subtle shadow effect when the user hovers over input fields and buttons */
+    .login-box input:hover,
+    .login-box button:hover,
+    .social-btn:hover,
+    .signup-box input:hover,
+    .signup-box button:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Background image blur effect (optional) */
+    .login-popup:before, .signup-popup:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://via.placeholder.com/1500x1000') no-repeat center center;
+      background-size: cover;
+      filter: blur(8px);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Login Popup -->
+  <div class="login-popup" id="loginPopup">
+    <div class="login-box">
+      <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Enter Username">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="closeLoginPopup()">Login</button>
+
+      <!-- Social Login Buttons -->
+      <div class="social-btns">
+        <button class="social-btn"><i class="fa fa-google"></i> Login with Google</button>
+        <button class="social-btn"><i class="fa fa-envelope"></i> Login with Mail</button>
+      </div>
+
+      <div class="social-btns">
+        <button class="social-btn"><i class="fa fa-linkedin"></i> Login with LinkedIn</button>
+      </div>
+
+      <!-- Sign Up Button -->
+      <button class="signup-btn" onclick="openSignupPopup()">Sign Up</button>
+    </div>
+  </div>
+
+  <!-- Sign Up Popup -->
+  <div class="signup-popup" id="signupPopup" style="display: none;">
+    <div class="signup-box">
+      <span class="close-btn" onclick="closeSignupPopup()">&times;</span>
+      <h2>Sign Up</h2>
+      <input type="text" id="signupUsername" placeholder="Enter Username">
+      <input type="email" id="signupEmail" placeholder="Enter Email">
+      <input type="password" id="signupPassword" placeholder="Create Password">
+      <button onclick="closeSignupPopup()">Sign Up</button>
+    </div>
+  </div>
+
+  <script>
+    function closeLoginPopup() {
+      document.getElementById("loginPopup").style.display = "none";
+    }
+
+    function openSignupPopup() {
+      document.getElementById("signupPopup").style.display = "flex";
+    }
+
+    function closeSignupPopup() {
+      document.getElementById("signupPopup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

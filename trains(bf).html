@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .booking-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .booking-container h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Verdana', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            font-size: 16px;
+            color: #444;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #f0f0f0;
+            color: #333;
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .submit-btn:hover {
+            background-color: #feb47b;
+        }
+    </style>
+    <script>
+        async function submitBooking(event) {
+            event.preventDefault();  // Prevent form refresh
+            
+            const formData = {
+                departure: document.getElementById('departure').value,
+                destination: document.getElementById('destination').value,
+                date: document.getElementById('date').value,
+                classType: document.getElementById('class').value,
+                passengers: document.getElementById('passengers').value,
+                email: document.getElementById('email').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/train-booking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                alert(data.message);
+                location.reload();
+            } catch (error) {
+                alert('Booking failed! Try again.');
+                alert('Error booking train: ' + error.message);
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="booking-container">
+        <h2>Train Booking</h2>
+        <form onsubmit="submitBooking(event)">
+            <div class="form-group">
+                <label for="departure">Departure Station</label>
+                <select id="departure" required>
+                    <option value="guntur">Guntur</option>
+                    <option value="vijayawada">Vijayawada</option>
+                    <option value="hyderabad">Hyderabad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination Station</label>
+                <select id="destination" required>
+                    <option value="chennai">Chennai</option>
+                    <option value="bangalore">Bangalore</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Travel Date</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="class">Class</label>
+                <select id="class">
+                    <option value="economy">Economy</option>
+                    <option value="business">Business</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="passengers">Number of Passengers</label>
+                <input type="number" id="passengers" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="submit-btn">Book Now</button>
+        </form>
+    </div>
+</body>
+</html>
